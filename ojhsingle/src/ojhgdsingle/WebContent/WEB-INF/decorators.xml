@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/layout">
+	<decorator name="main" page="layout.jsp">
+		<pattern>/main/member/*</pattern>
+		<pattern>/main/board/*</pattern>
+	</decorator>
+	<!-- sitemesh  layout 설정 안함 -->
+	<excludes>
+		<pattern>/main/member/id*</pattern>
+		<pattern>/main/member/pw*</pattern>
+		<pattern>/main/member/picture*</pattern>
+		<pattern>/main/member/password*</pattern>
+		<pattern>/main/board/imgupload*</pattern>
+	</excludes>
+</decorators>
