@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201111/dateex1.html --> 
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Date 객체 예제</title>
+</head>
+<body>
+<script type="text/javascript">
+	now = new Date();
+	document.write(now,"<br>"); //toString() 호출
+	document.write(now.toGMTString(),"<br>"); 	// 표준시, 영국시간
+	document.write(now.toLocaleString(),"<br>");	//지역시간
+	document.write(now.toString(),"<br>");
+	document.write("년도: " + now.getYear(),"<br>");
+	document.write("년도: " + now.getFullYear(),"<br>");
+	document.write("월(0:1월~11:12월): " + now.getMonth(),"<br>");
+	document.write("일: " + now.getDate(),"<br>");
+	document.write("요일(0:일~6:토): " + now.getDay(),"<br>");
+	document.write("시간: " + now.getHours(),"<br>");
+	document.write("분: " + now.getMinutes(),"<br>");
+	document.write("초: " + now.getSeconds(),"<br>");
+	document.write("getTime():1970년부터 지금까지" + now.getTime(),"msec<br><hr>");
+	//now 객체를 다음날로 설정하기 
+	now.setTime(now.getTime()+(1000*60*60*24));
+	document.write("다음날:"+now,"<br>");
+	//Date 일자 설정하기. 2020년 12월 25일 날짜 설정
+	date = new Date(2020,(12-1),25);
+	document.write("date:"+date,"<br>");
+</script>
+</body>
+</html>

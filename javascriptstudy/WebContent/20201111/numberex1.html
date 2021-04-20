@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201111/numberex1.html --> 
+<!-- Number 클래스의 메서드를 추가하여 세자리마다 ,출력하기 -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>ㅇㅇ</title>
+<script type="text/javascript">
+	Number.prototype.printComma=function(){
+		var num = this.toString();	//숫자=>문자열 형태 1234567890
+		var output = "";
+		var i = num.length -3;
+		while(i>0){ //7  //4  //1 //-2
+			output = ","+num.substr(i,3)+output; // ,890 // ,567 // ,234  // 1
+			i-=3;
+		}
+		output = num.substr(0,3+i) + output;
+		return output;
+	}
+	//정규식
+	Number.prototype.printComma2=function(){
+		var num = this.toString();	//숫자=>문자열 형태 1234567890
+		var pattern = /(-?\d+)(\d{3})/;
+		while(pattern.test(num))
+			num=num.replace(pattern,"$1,$2");
+		return num;
+	}
+//	alert((1234567890).printComma());
+	document.write((1234567890).printComma(),"<br>");
+	document.write((123).printComma(),"<br>");
+	document.write((1234567890).printComma2(),"<br>");
+	document.write((123).printComma2(),"<br>");
+</script>
+</head>
+<body>
+<pre>
+	Number 타입을 print 할때 입력된 숫자에 3자리마다 콤마가 출력되도록 하기
+</pre>
+</body>
+</html>

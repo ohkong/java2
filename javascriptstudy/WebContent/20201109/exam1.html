@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201109/exam1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function copyvalue(){
+		num2.value=num1.value;
+	}
+	function sumall(){
+		end= num.value;
+		tot=0;
+		eventot=0;
+		oddtot=0;
+		for(i=1;i<=end;i++){
+			tot+=i;
+			if(i%2==0)
+				eventot+=i;
+			else oddtot+=i;
+		}
+		sum.value = tot;
+		evensum.value = eventot;
+		oddsum.value = oddtot;
+	}
+	
+</script>
+</head>
+<body>
+<h2>num1의 값을 num2 태그에 복사하기</h2>
+<input type="text" id="num1">
+<input type="text" id="num2">
+<input type="button" value="복사" onclick="copyvalue()">
+
+<h2>입력된 숫자까지의 합계 구하기</h2>
+<input type="text" id="num">
+<input type="button" value="합계" onclick="sumall()"><br>
+전체 합계 : <input type="text" id="sum"><br>
+짝수 합계 : <input type="text" id="evensum"><br>
+홀수 합계 : <input type="text" id="oddsum"><br>
+</body>
+</html>

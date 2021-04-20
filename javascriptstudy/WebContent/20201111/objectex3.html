@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201111/objectex3.html --> 
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>객체의 상속 표현</title>
+<script type="text/javascript">
+	function Animal(name) {
+		this.name=name;
+		this.cry=function(){}
+	}
+	function Dog(name){
+		this.base = Animal;
+		this.base(name);
+		this.cry = function(){
+			document.write(this.name + " 멍멍","<br>");
+		}
+	}
+	function Cat(name){
+		this.base = Animal;
+		this.base(name);
+		this.cry = function(){
+			document.write(this.name + " 야옹","<br>");
+		}
+	}
+	function Bird(name){
+		this.base = Animal;
+		this.base(name);
+		this.cry = function(){
+			document.write(this.name + " 짹짹","<br>");
+		}
+	}
+	var dog  = new Dog("강아지");
+	var cat  = new Cat("고양이");
+	var bird  = new Bird("참새");
+	dog.cry();
+	cat.cry();
+	bird.cry();
+</script>
+</head>
+<body>
+<pre>
+	Animal 객체
+		name : 문자열
+		cry  : 메서드
+			
+	Dog : Animal 상속 받아 cry 메서드 재정의 '멍멍'
+	Cat : Animal 상속 받아 cry 메서드 재정의 '야옹'
+	Bird : Animal 상속 받아 cry 메서드 재정의 '짹짹'
+</pre>
+</body>
+</html>

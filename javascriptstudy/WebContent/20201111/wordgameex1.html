@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201111/wordgameex1.html --> 
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>타자연습</title>
+<style type="text/css">
+div{position:absolute;}
+#main{
+width:450px;height:500px;
+border:1px solid blue;overflow: hidden;}
+input{
+position:absolute; top:510px;
+left:10px;size:200px;}
+</style>
+<script type="text/javascript">
+var datas=[
+	["태연","유리","윤아","효연","효연","수영","티파니","써니","제시카"],
+	["정국","뷔","지민","슈가","진","알앰","제이홈"],
+	["미나","나연","다현","지효","사나","쯔위","정연","채영","모모"]
+]
+var colors=['red','blue','green','gray','orange','black']
+window.onload = function(){
+	cm = setInterval(createMode,2000);
+	mm = setInterval(moveMode,500);
+}
+function MovingChar(){
+	this.h3 = document.createElement('h3');
+	this.h3.innerHTML = randomData();
+	this.x = random(400);
+	this.y=0;
+	this.vX=0;
+	this.vY=10;
+	this.h3.style.position = 'absolute';
+	this.h3.style.color = colors[random(5)];
+	document.getElementById("main").appendChild(this.h3);
+}
+MovingChar.prototype.move=function(){
+	if((this.x+this.h3.innerHTML.length)>400){
+		this.x= 400-(this.h3.innerHTML.length+1);
+	}
+	this.y+=this.vY;
+	this.h3.style.left=this.x + 'px';
+	this.h3.style.top=this.y + 'px';
+};
+MovingChar.prototype.remove = function(){
+	document.getElementById("main").removeChild(this.h3);
+};
+function createMode(){
+	worlds.push(new MovingChar());
+}
+function moveMode(){
+	for(var i in worlds){
+		worlds[i].move();
+		if(worlds[i].y>=500){
+			document.getElementById("main").removeChild(worlds[i].h3);
+			delete(worlds[i])
+			clearInterval(cm);
+			clearInterval(mm);
+			for(var j in worlds){
+				worlds[j].h3.style.color = 'gray';
+			}
+			alert("게임 종료")
+		}
+	}
+}
+function random(num){
+	var num1 = Math.random()*num;
+	num1 = parseInt(num1);
+	return num1;
+}
+function randomData(){
+	var num1 = Math.random()*3;
+	num1 = parseInt(num1);
+	var num2 = Math.random()*datas[num1].length;
+	num2 = parseInt(num2);
+	return datas[num1][num2];
+}
+function deleteMode(str){
+	for(var i in worlds){
+		worlds[i].move();
+		if(worlds[i].h3.innerHTML==str){
+			document.getElementById("main").removeChild(worlds[i].h3);
+			delete(worlds[i])
+		}
+	}
+	document.getElementById("input").value="";
+	document.getElementById("input").focus();
+}
+</script>
+</head>
+<body>
+<div id="main"></div><div style="width:400px">
+<input type="text" onchange="deleteMode(this,value)" id="input"></div>
+</body>
+</html>

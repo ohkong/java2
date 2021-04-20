@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201111/exam1.html --> 
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Person 객체 생성하기</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Person(name,blog){
+		this.name=name;
+		this.blog=blog;
+		
+// 		this.userName=name;
+// 		this.userBlog=blog;
+// 		this.getName = function(){
+// 			var str = this.userName;
+// 			return str;
+// 		}
+// 		this.getBlog = function(){
+// 			var str = this.userBlog;
+// 			return str;
+// 		}
+	}
+	Person.prototype.getName = function() {
+		return this.name;
+	};
+	Person.prototype.getBlog = function() {
+		return this.blog;
+	};
+
+	var kim = new Person("김삿갓","kimsg.tistory.com");
+	var lee = new Person("이몽룡","leemy.tistory.com");
+	document.write(kim.getName(),"<br>");	//김삿갓
+	document.write(kim.getBlog(),"<br>");	//kimsg.tistory.com
+	document.write(lee.getName(),"<br>");	//이몽룡
+	document.write(lee.getBlog(),"<br>");	//leemy.tistory.com
+</script>
+</body>
+</html>

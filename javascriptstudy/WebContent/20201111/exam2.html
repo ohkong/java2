@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201111/exam2.html --> 
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>달력 출력하기</title>
+<style type="text/css">
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+/* th태그,td태그 둘다 */
+th, td {
+	border: 3px solid #bcbcbc;
+	text-align: center;
+	padding: 8px;
+}
+
+th {
+	background-color: #e2e2e2;
+	color: #111111;
+}
+
+td {
+	background-color: #f2f2f2;
+}
+
+caption {
+	color: #111111;
+	font-size: 20px;
+	background-color: #ffffff;
+}
+/* class 속성의 값이 . 뒤에 오는 값 */
+.text-red {
+	color: red;
+}
+
+.text-blue {
+	color: blue;
+}
+</style>
+</head>
+<body>
+	<select id="y">
+		<option>2017</option>
+		<option>2018</option>
+		<option>2019</option>
+		<option selected="selected">2020</option>
+		<option>2021</option>
+		<option>2022</option>
+	</select>
+	<select id="m">
+		<option value="1">1월</option>
+		<option value="2">2월</option>
+		<option value="3">3월</option>
+		<option value="4">4월</option>
+		<option value="5">5월</option>
+		<option value="6">6월</option>
+		<option value="7">7월</option>
+		<option value="8">8월</option>
+		<option value="9">9월</option>
+		<option value="10">10월</option>
+		<option value="11" selected="selected">11월</option>
+		<option value="12">12월</option>
+	</select>
+	<input type="button" value="달력보기" onclick="show_cal()">
+	<br>
+	<sapn id="cal">
+	</span>
+	<br>
+	<script type="text/javascript">
+		function show_cal() {
+			//내가한것
+			// 		var year = parseInt(y.value);
+			// 		var month = parseInt(m.value);
+			// 			var sc = "<talbe><caption>" + year + "년" + month + "월 </cpation>";
+			// 			sc += "<tr><th class='text.red'>일</th><th>월</th><th>화</th>"+
+			//                      "<th>수</th><th>목</th><th>금</th><th class='text.blue'>토</th></tr>";
+			// 			for (var i = 0; i < 6; i++) {
+			// 				sc += "<tr>";
+			// 				for (var j = 0; j < 7; i++) {
+			// 					sc += "<td>" + (new Date(year, month, j)) + "</td>";
+			// 				}
+			// 				sc += "</tr>";
+			// 			}
+			// 			sc += "</table>";
+			// 			cal.innerHTML = sc;
+
+			//강사님
+			//y.value : select 태그의 id="y" 인 태그의 선택값
+			//parseInt : 문자열, 실수 => 정수로 변경
+			var year = window.parseInt(y.value);
+			var mon = parseInt(m.value);
+			cal1 = new Date(year, mon - 1, 1); //선택한 월의 첫번째 일자
+			cal2 = new Date(year, mon, 1); //선택한 월의 다음달의 첫번째 일자
+			cal2.setTime(cal2.getTime() - (1000 * 60 * 60 * 24)); //마지막 일자
+			var sc = "<table><caption>" + year + "년" + mon + "월 </cpation>";
+			sc += "<tr><th class='text-red'>일</th><th>월</th>"+
+					"<th>화</th><th>수</th><th>목</th><th>금</th><th class='text-blue'>토</th></tr>";
+			//week : 선택월의 1일의 요일
+			week = cal1.getDay(); //요일. 0:일 1:월 .... 6:토
+			day = 0;
+			for (var i = 0; i < 6; i++) {
+				sc += "<tr>"
+				for (var j = 0; j < 7; j++) {
+					if (j == 0) sc += "<td class='text-red'>"; //일요일 
+					else if (j == 6)sc += "<td class='text-blue'>"; //토요일
+					else sc += "<td>";
+					if (i == 0) { //첫번째 주
+						if (week <= j)sc += ++day;
+						else sc += "&nbsp;"
+					} else {
+						if (cal2.getDate() > day) sc += ++day;
+						else sc += "&nbsp;";
+					}
+					sc +="</td>";
+				}
+				sc += "</tr>"
+				if(day>=cal2.getDate())break;
+			}
+			sc += "</table>";
+			console.log(sc);
+			cal.innerHTML = sc;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- javascriptstudy/WebContent/20201111/objectex4.html --> 
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>객체의 상속 : class 이용</title>
+<script type="text/javascript">
+	class Animal{
+		constructor(name){	//생성자
+			this.name=name;
+			this.cry-function(){}
+		}
+	}
+	class Dog extends Animal{
+		constructor(name){
+			super(name);
+			this.cry=function(){
+				document.write(this.name + " 멍멍","<br>")
+			}
+		}
+	}
+	class Cat extends Animal{
+		constructor(name){
+			super(name);
+			this.cry=function(){
+				document.write(this.name + " 야옹","<br>")
+			}
+		}
+	}
+	class Bird extends Animal{
+		constructor(name){
+			super(name);
+			this.cry=function(){
+				document.write(this.name + " 짹짹","<br>")
+			}
+		}
+	}
+	Bird.prototype.fly=function(){
+		document.write(this.name + "는 날라다닌다","<br>")
+	}
+	Bird.prototype.kind='조류';
+	var dog = new Dog("강아지");
+	var cat = new Cat("고양이");
+	var bird = new Bird("참새");
+	dog.cry();
+	cat.cry();
+	bird.cry();
+	bird.fly();
+	document.write("bird의 분류: "+bird.kind,"<br>")
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>구구단출력하기</title>
+<style type="text/css">
+table { width:100%; border-collapse: collapse;}
+th,td {border : 3px solid #bcbcbc; text-align: center; padding: 8px;}
+th {background-color: #e2e2e2; color:#111111;}
+td {background-color: #f2f2f2;}
+caption {color:#111111; font-size: 20px; background-color: #ffffff;}
+</style>
+<script type="text/javascript">
+    function print1() {
+        var html = "<table>";
+        for (var i = 2; i <= 9; i++) {
+        	html += "<tr><th>" + i + "단</th></tr>";
+            for (var j = 1; j <= 9; j++) {
+                html += "<tr><td>" + i + " * " + j + " = " + (i * j) + "</td></tr>";
+            }
+        }
+        html += "</table>";
+        gugudan.innerHTML = html;
+    }
+
+    function print2() {
+        var html = "<table><tr>"
+        for (var i = 2; i <= 9; i++) {
+            html += "<th>" + i + "단</th>";
+        }
+        html += "</tr>"
+        for (var i = 1; i <= 9; i++) {
+        	html += "<tr>"
+            for (var j = 2; j <=9 ; j++) {
+            	html += "<td>" + j + " * " + i + " = " + (j * i) + "</td>";
+            }
+        	html += "</tr>"
+        }
+        html += "</table>";
+        gugudan.innerHTML = html;
+    }
+
+    function print3() {
+        var html = "<table><tr>"
+        for (var i = 2; i <= 5; i++) {
+            html += "<th>" + i + "단</th>";
+        }
+        html += "</tr>"
+        for (var i = 1; i <= 9; i++) {
+        	html += "<tr>"
+            for (var j = 2; j <= 5 ; j++) {
+            	html += "<td>" + j + " * " + i + " = " + (j * i) + "</td>";
+            }
+        	html += "</tr>"
+        }
+        html += "<tr>";
+        for (var i = 6; i <= 9; i++) {
+        	html += "<th>" + i + "단</th>";
+        }
+        html += "</tr>"
+        for (var i = 1; i <= 9; i++) {
+        	html += "<tr>"
+            for (var j = 6; j <= 9 ; j++) {
+            	html += "<td>" + j + " * " + i + " = " + (j * i) + "</td>";
+            }
+        	html += "</tr>"
+        }
+        html += "</table>";
+        gugudan.innerHTML = html;
+        
+        
+//         var html = "<table><caption>2단출력</caption>"
+//         for(i=2;i<=9;i+=4){
+//         	 html += "<tr>";
+//         	 for(k=0;k<4;k++){
+//         		 html+="<th>"+(i+k)+"단</th>";
+//         	 }
+//         }
+ }
+    function print4() {
+ 	   var d = parseInt(dan.value);
+         var html = "<table>";
+         	html += "<tr><th>" + d + "단</th></tr>";
+             for (var j = 1; j <= 9; j++) {
+                 html += "<tr><td>" + d + " * " + j + " = " + (d * j) + "</td></tr>";
+             }
+         html += "</table>";
+         console.log(html);
+         gugudan.innerHTML = html;
+     }
+</script>
+</head>
+<body>
+<input type="button" value="세로출력" onclick="print1()">
+<input type="button" value="가로출력" onclick="print2()">
+<input type="button" value="2단출력" onclick="print3()">
+<h3>2~9까지의 숫자를 선택하여 해당단의 구구단을 출력하기</h3>
+<select id="dan" onchange="print4()">
+<option value="">선택하세요</option>
+<option value="2">2단</option><option value="3">3단</option><option value="4">4단</option>
+<option value="5">5단</option><option value="6">6단</option>
+<option value="7">7단</option><option value="8">8단</option><option value="9">9단</option>
+</select>
+<div id="gugudan"></div>
+</body>
+</html>

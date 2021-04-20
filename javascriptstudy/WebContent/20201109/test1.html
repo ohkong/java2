@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>1109.1</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var sum = 0; //저축총액
+		var cnt = 0; //저축횟수
+		while (sum<100) {	
+			money = Math.floor(Math.random() * 10) + 1;
+			cnt++;
+			sum += money;
+			if (money>= 6) {
+				document.write(cnt + ". 저축을 많이 하셧습니다. 잘하셨습니다. " 
+					+ money + "만원, 잔액:" + sum + "<br>");
+			} else {
+				document.write(cnt + ". 좀더 많이 하세요. "
+					+ money + "만원, 잔액:" + sum + "<br>");
+			}
+		}
+		document.write("저축이 만료되었습니다. 잔액 :" + sum);
+	</script>
+</body>
+</html>

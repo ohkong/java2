@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>강사님</title>
+<style type="text/css">
+.mon {
+	width: 100%;
+	border-collapse: collapse;
+}
+th.mon, td.mon {
+	border: 3px solid #bcbcbc;
+	text-align: center;
+	padding: 8px;
+}
+th.mon {
+	background-color: #e2e2e2;
+	color: #111111;
+}
+td.mon {
+	background-color: #f2f2f2;
+}
+caption {
+	color: #111111;
+	font-size: 20px;
+	background-color: #ffffff;
+}
+.text-red {
+	color: red;
+}
+.text-blue {
+	color: blue;
+}
+</style>
+</head>
+<body>
+<select id="y">
+		<option>2016</option>
+		<option>2017</option>
+		<option>2018</option>
+		<option>2019</option>
+		<option selected="selected">2020</option>
+		<option>2021</option>
+		<option>2022</option>
+</select>
+<input type="button" value="달력보기" onclick="show_cal()">
+<div id="cal"></div>
+</body>
+<script type="text/javascript">
+function show_cal() {
+	var year = window.parseInt(y.value);
+	var sc="<table><caption>" + year + "년 </caption>";
+	for (var mon = 1; mon <= 12; mon++) {
+		if((mon-1)%3==0) sc +="<tr>";
+			cal1 = new Date(year, mon-1, 1);
+			cal2 = new Date(year, mon, 1);
+			cal2.setTime(cal2.getTime() - (1000 * 60 * 60 * 24));
+			var monstr = "<td valign='top' style='padding:10px;'>";
+				monstr += "<table class='mon'><caption>" + mon + "월</cpation>";
+				monstr += "<tr class='mon'><th class='mon'>일</th><th class='mon'>월</th>"
+					+ "<th class='mon'>화</th><th class='mon'>수</th>"
+					+ "<th class='mon'>목</th><th class='mon'>금</th><th class='mon'>토</th></tr>";
+			week = cal1.getDay();
+			day = 0;
+			for (var i = 0; i < 6; i++) {
+				monstr += "<tr>"
+				for (var j = 0; j < 7; j++) {
+					if (j == 0)
+						monstr += "<td class='mon text-red'>";
+					else if (j == 6)
+						monstr += "<td class='mon text-blue'>";
+					else
+						monstr += "<td class='mon'>";
+					if (i == 0) {
+						if (week <= j)
+							monstr += ++day;
+						else
+							monstr += "&nbsp;"
+					} else {
+						if (cal2.getDate() > day)
+							monstr += ++day;
+						else
+							monstr += "&nbsp;";
+					}
+					monstr += "</td>";
+				}
+				monstr += "</tr>"
+				if (day >= cal2.getDate())
+					break;
+			}
+			monstr += "</table></td>";
+			sc+=monstr;
+			if((mon-1)%3==3) sc += "</tr>"
+		}
+	sc += "</table>";
+	cal.innerHTML = sc;
+}
+</script>
+</html>
