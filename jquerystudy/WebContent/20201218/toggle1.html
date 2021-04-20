@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- /WebContent/20201218/toggle1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>toggle 함수</title>
+<script type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button").click(function(){
+			$(".page").toggle("slow")	//show(), hide() 번갈아가면서 실행
+		})
+	})
+</script>
+</head>
+<body>
+<button>Toggle Show</button>
+<div class="page"><h1>Header 태그 입니다.</h1>
+<p>내용부분입니다</p></div>
+</body>
+</html>

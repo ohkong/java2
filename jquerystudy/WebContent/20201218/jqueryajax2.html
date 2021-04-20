@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- /WebContent/20201218/jqueryajax2.html 
+==로그인 버튼 클릭시==
+	1. submit 버튼이 클릭된 경우 id,pass 두개의 값을 ajax2-1.jsp로 전송하기
+	2. ajax2-1.jsp 페이지에서 member테이블 을 읽어 id,pass 검증. jstl이용하기
+	   id, pass 일치 : 반갑습니다. name님 => message부분에 출력
+	   id, pass 불일치 : 아이디 또는 비밀번호가 틀립니다 => message 부분에 출력 
+==아이디 중복 버튼 클릭시==
+	1. id 파라미터를 ajax2-2.jsp로 전송
+	2. id가 존재 : 존재하는 아이디 입니다. => messeage 부분에 출력 id 입력란을 지우기
+	   id가 존재하지 않으면 : 회원가입을 할 수 있는 아이디 입니다 => message 부분에 출력
+-->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>ajax를 이용한 로그인</title>
+<script type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#submit").click(function(){
+			var param = {id:$("#id").val(),pass:$("#pass").val()}
+			$.ajax({
+				url : "ajax2-1.jsp",
+				type : "POST",
+				data : param,
+				success : function(data){
+					$("#message").html(data);
+				},
+				error : function(e){
+					alert("서버오류:"+e.status);
+				}
+			})
+			return false; //기본 이벤트 취소. submit버튼의 기능 제거.
+						  //submit 버튼의 기능 : form의 action으로 페이지 이동
+		})
+		$("#btn").click(function(){
+			var param = {id:$("#id").val()}
+			$.ajax({
+				url : "ajax2-2.jsp",
+				type : "POST",
+				data : param,
+				success : function(data){
+					$("#message").html(data);
+					if($("h1").is(".find")){
+						$("#id").val("");
+					}
+				},
+				error : function(e){
+					alert("서버오류:"+e.status);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+<form name="f">
+	아이디 <input type="text" id="id">
+		<input type="button" value="아이디중복" id="btn"><br>
+	비밀번호<input type="password" id="pass"><br>
+		<input type="submit" value="로그인" id="submit">
+</form>
+<div id="message"></div>
+</body>
+</html>

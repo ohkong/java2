@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- /WebContent/20201211/each1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>반복 함수: each</title>
+<script type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var arr = [	//배열
+			{name:"구디",link:"http://www.goodee.co.kr"},	//객체
+			{name:"다음",link:"http://www.daum.net"},
+			{name:"네이버",link:"http://www.naver.com"},
+			{name:"구글",link:"http://www.google.com"},
+		]
+		var output = ""
+		$.each(arr,function(i,item){
+			output += "<a href='"+item.link+"'>"
+			output +="<h3>"+(i+1)+"."+item.name+"</h3></a>"
+		})
+		//html : 자바스크립트의 innerHtml
+		$("#arr").html(output)
+		console.log($("arr").html())
+		var obj = {name:"홍길동",loc:"율도국"} //객체
+		//$.extend() : 객체 멤버 추가
+		$.extend(obj,{part:"의적",gender:"남자"})
+		output=""
+		$.each(obj,function(key,value){
+			output += key+":"+value+"<br>"
+		})
+		$("#obj").html(output)
+	})
+</script>
+</head>
+<body>
+<div id="arr"></div><div id="obj"></div>
+</body>
+</html>
